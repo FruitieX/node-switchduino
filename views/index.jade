@@ -1,0 +1,41 @@
+html
+    head
+        script(src='socket.io-client/socket.io.js')
+        script(src='underscore/underscore-min.js')
+        script(src='jquery/dist/jquery.min.js')
+        script(src='bootstrap/dist/js/bootstrap.min.js')
+        link(rel='stylesheet' href='bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet' href='bootstrap/dist/css/bootstrap-theme.min.css')
+        meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    body(id='background')
+        div.container
+            div.well.center-block
+                div.btn-toolbar
+                    div.btn-group.btn-group-lg.btn-group-fill-height
+                        a#c(class='btn btn-default') Monitors Off
+                        a#C(class='btn btn-primary') Monitors On
+                    div.btn-group.btn-group-lg.btn-group-fill-height
+                        a#a(class='btn btn-default') Speakers Off
+                        a#A(class='btn btn-primary') Speakers On
+                    div.btn-group.btn-group-lg.btn-group-fill-height
+                        a#b(class='btn btn-default') LEDs Off
+                        a#B(class='btn btn-primary') LEDs On
+
+                br
+
+                a#all(class='btn btn-default btn-block btn-lg') All Off
+        script.
+            var socket = io();
+
+            ['a', 'b', 'c'].forEach(function(toggle) {
+                $('#' + toggle).click(function() {
+                    socket.emit('switch', toggle);
+                });
+                $('#' + toggle.toUpperCase()).click(function() {
+                    socket.emit('switch', toggle.toUpperCase());
+                });
+            });
+
+            $('#all').click(function() {
+                socket.emit('all');
+            });
