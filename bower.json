@@ -1,11 +1,11 @@
 {
-  "name": "serialrgb",
+  "name": "node-switchduino",
   "main": "index.js",
   "version": "1.0.0",
   "authors": [
     "FruitieX"
   ],
-  "description": "client for serialrgb",
+  "description": "web interface for switchduino",
   "license": "MIT",
   "ignore": [
     "**/.*",
